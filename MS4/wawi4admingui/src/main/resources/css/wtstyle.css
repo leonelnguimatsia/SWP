@@ -1,0 +1,7 @@
+.table-row-cell:order {
+    -fx-text-background-color: green;
+}
+
+.table-row-cell:delivery {
+    -fx-text-background-color: orange;
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane layoutX="98.0" layoutY="181.0" prefHeight="318.0" prefWidth="595.0" vbarPolicy="ALWAYS">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="137.0">
+               <children>
+                  <TableView prefHeight="318.0" prefWidth="578.0">
+                    <columns>
+                      <TableColumn prefWidth="123.0" text="katid" />
+                      <TableColumn prefWidth="143.0" text="parentkatid" />
+                        <TableColumn prefWidth="134.0" text="name" />
+                        <TableColumn prefWidth="175.0" text="beschreibung" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Label alignment="CENTER" layoutX="101.0" layoutY="149.0" prefHeight="25.0" prefWidth="150.0" text="Kategorie zum Suchen">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField layoutX="251.0" layoutY="149.0" prefHeight="25.0" prefWidth="442.0" />
+      <Label layoutX="378.0" layoutY="48.0" text="Admin">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="327.0" layoutY="78.0" text="Kategorie anlegen/bearbeiten/löschen" />
+      <Button layoutX="101.0" layoutY="505.0" mnemonicParsing="false" text="Anlegen" />
+      <Button alignment="CENTER" layoutX="619.0" layoutY="505.0" mnemonicParsing="false" text="Abbrechen" />
+      <Button layoutX="264.0" layoutY="505.0" mnemonicParsing="false" text="Bearbeiten" />
+      <Button layoutX="471.0" layoutY="505.0" mnemonicParsing="false" text="Löschen" />
+      <Button alignment="CENTER" layoutX="-5.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="166.0" text="Zurück zum Hauptmenü" />
+   </children>
+</AnchorPane>

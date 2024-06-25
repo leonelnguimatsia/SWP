@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="948.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane layoutX="98.0" layoutY="181.0" prefHeight="318.0" prefWidth="774.0" vbarPolicy="ALWAYS">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="137.0">
+               <children>
+                  <TableView prefHeight="318.0" prefWidth="763.0">
+                    <columns>
+                      <TableColumn prefWidth="66.0" text="bid" />
+                      <TableColumn prefWidth="83.0" text="kundeNr." />
+                        <TableColumn prefWidth="92.0" text="lieferadresse" />
+                        <TableColumn prefWidth="126.0" text="rechnungsadresse" />
+                        <TableColumn prefWidth="69.0" text="created" />
+                        <TableColumn prefWidth="90.0" text="status" />
+                        <TableColumn prefWidth="121.0" text="gesamtnetto" />
+                        <TableColumn prefWidth="113.0" text="gesamtbrutto" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Label layoutX="454.0" layoutY="91.0" text="Admin">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="425.0" layoutY="132.0" text="Bestellungen anzeigen" />
+      <Button layoutX="101.0" layoutY="505.0" mnemonicParsing="false" text="Anzeigen" />
+      <Button alignment="CENTER" layoutX="798.0" layoutY="505.0" mnemonicParsing="false" text="Abbrechen" />
+      <Button alignment="CENTER" layoutX="-5.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="166.0" text="Zurück zum Hauptmenü" />
+   </children>
+</AnchorPane>

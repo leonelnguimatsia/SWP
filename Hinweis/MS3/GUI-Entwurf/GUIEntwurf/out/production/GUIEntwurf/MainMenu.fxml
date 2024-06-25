@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="266.0" prefWidth="492.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenu">
+    <children>
+        <Button fx:id="btProductCategory" alignment="CENTER_RIGHT" layoutX="107.0" layoutY="86.0" mnemonicParsing="false" onAction="#btProductCategoryAction" prefHeight="48.0" prefWidth="280.0" style="-fx-background-image: url('file:res/Produkt.png');" stylesheets="@buttonstyle.css" text="Produkte &amp; Kategorien" textAlignment="CENTER">
+            <tooltip>
+                <Tooltip text="Hier können Produkte und Kategorien eingesehen, hinzugefügt, bearbeitet und entfernt werden." />
+            </tooltip>
+        </Button>
+        <Label layoutX="165.0" layoutY="42.0" text="Admin Hauptmenü">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="btStock" alignment="CENTER_RIGHT" layoutX="107.0" layoutY="145.0" mnemonicParsing="false" onAction="#btStockAction" prefHeight="48.0" prefWidth="280.0" style="-fx-background-image: url('file:res/Lager.png');" stylesheets="@buttonstyle.css" text="Bestellungen &amp; Einlieferungen" textAlignment="CENTER">
+            <tooltip>
+                <Tooltip text="Hier können Bestellungen und Einlieferungen eingesehen werden." />
+            </tooltip>
+        </Button>
+        <MenuBar layoutX="1.0" layoutY="1.0" prefHeight="27.0" prefWidth="491.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Datei">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Abmelden" />
+                        <MenuItem mnemonicParsing="false" text="Beenden" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Label layoutX="113.0" layoutY="217.0" text="Sie sind angemeldet mit Nutzer-ID &lt;userid&gt;" />
+        <Label layoutX="193.0" layoutY="235.0" text="Ihre Rolle: Admin" />
+    </children>
+</AnchorPane>

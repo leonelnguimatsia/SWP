@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.thkoeln.swp.wawi4</groupId>
+    <artifactId>bootloader</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- <skipTests>true</skipTests> -->
+        <src.dir>src/main/java</src.dir>
+        <test.dir>src/test/java</test.dir>
+    </properties>
+
+    <!-- Konfiguration des Maven-Repositories auf Feuerbach (dort Weiterleitung zum Maven-Central-Repository) -->
+    <!-- Konfiguration des Maven-Repositories auf Gitlab -->
+    <repositories>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.nt.fh-koeln.de/gitlab/api/v4/groups/616/-/packages/maven</url>
+        </repository>
+    </repositories>
+    <distributionManagement>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/projects/${env.CI_PROJECT_ID}/packages/maven</url>
+        </repository>
+        <snapshotRepository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/projects/${env.CI_PROJECT_ID}/packages/maven</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
+    <build>
+        <plugins>
+
+            <!-- Plugin zum Compilieren -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin zum Erstellen in einer JAR-Datei -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin zum Erstellen einer JAR-Datei mit Quellcode-Dateien (zum Debuggen) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Plugin zum Kopieren der Dependencies in einen Ordner (mlib) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/mlib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Plugin zum Starten der Anwendung -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>false</skip>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>--module-path</argument> <!-- or -p  -->
+                        <modulepath/>
+                        <!-- automatically creates the modulepath using all project dependencies,
+                             also adding the project build directory -->
+                        <argument>--module</argument>  <!-- or -m -->
+                        <argument>de.thkoeln.swp.wawi.bootloader/de.thkoeln.swp.wawi.bootloader.Main</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <dependencies>
+
+        <!-- JavaFX-Controls -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>17.0.2</version>
+        </dependency>
+
+        <!-- JavaFX-FXML -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>17.0.2</version>
+        </dependency>
+
+        <!-- XML-Bind -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
+        <!-- Byte-Buddy -->
+        <!--
+            TODO pruefen, ob noetig, oder ob das vielleicht auch in Hibernate-Validator enthalten ist
+            bzw. pruefen, wozu es ueberhaupt gebraucht wird
+        -->
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.10.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.3.0-alpha5</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.activation</groupId>
+                    <artifactId>activation</artifactId>
+                </exclusion>
+            </exclusions>
+
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>classmate</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+
+        <!--
+                Der hibernate-validator enthält ein fasterxml, und zwar genau die Version, die beim Einsatz von hibernate 5.4.0.Final benoetigt wird
+                Wir verwenden im wawidbmodel die Version 5.4.10.Final von hibernate-core .
+                ToDo: Hibernate Update auf mindestens 6.2.3.Final , vielleicht auch 7.0.1.Final
+                ToDo: pruefen, ob die dependency auch im wawidbmodel stehen könnte statt hier
+        -->
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+<!--        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>7.0.4.Final</version>
+        </dependency>
+-->
+
+
+
+        <!-- Komponente AdminDaten -->
+        <dependency>
+            <groupId>de.thkoeln.swp.wawi4</groupId>
+            <artifactId>produktverwaltung</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente AdminGUI -->
+        <dependency>
+            <groupId>de.thkoeln.swp.wawi4</groupId>
+            <artifactId>admingui</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente AdminSteuerung -->
+        <dependency>
+            <groupId>de.thkoeln.swp.wawi4</groupId>
+            <artifactId>adminsteuerung</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente KundeGUI -->
+        <dependency>
+            <groupId>de.thkoeln.swp.wawi4</groupId>
+            <artifactId>kundegui</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente KundeDaten -->
+        <dependency>
+            <groupId>de.thkoeln.swp.wawi4</groupId>
+            <artifactId>kundedaten</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.thkoeln.swp.wawi4</groupId>
+            <artifactId>bestellungverwaltungk</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente KundeSteuerung -->
+        <dependency>
+            <groupId>de.thkoeln.swp.wawi4</groupId>
+            <artifactId>kundesteuerung</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente LagerDaten -->
+        <dependency>
+            <groupId>de.thkoeln.swp.wawi4</groupId>
+            <artifactId>lagerdaten</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente LagerGUI -->
+        <dependency>
+            <groupId>de.thkoeln.swp.wawi4</groupId>
+            <artifactId>lagergui</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente LagerSteuerung -->
+        <dependency>
+        <groupId>de.thkoeln.swp.wawi4</groupId>
+            <artifactId>lagersteuerung</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente SachbearbeiterDaten -->
+        <dependency>
+            <groupId>de.thkoeln.swp.wawi4</groupId>
+            <artifactId>bestellungverwaltungs</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente SachbearbeiterGUI -->
+        <dependency>
+            <groupId>de.thkoeln.swp.wawi4</groupId>
+            <artifactId>sachbearbeitergui</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente SachbearbeiterSteuerung -->
+        <dependency>
+            <groupId>de.thkoeln.swp.wawi4</groupId>
+            <artifactId>sachbearbeitersteuerung</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente DatenhaltungAPI -->
+        <dependency>
+            <groupId>de.thkoeln.swp.wawi</groupId>
+            <artifactId>datenhaltungapi</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente SteuerungAPI -->
+        <dependency>
+            <groupId>de.thkoeln.swp.wawi</groupId>
+            <artifactId>steuerungapi</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+    </dependencies>
+</project>

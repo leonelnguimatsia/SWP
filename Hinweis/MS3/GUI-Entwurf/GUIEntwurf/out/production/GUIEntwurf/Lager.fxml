@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Lager">
+   <children>
+      <MenuBar layoutY="1.0" prefHeight="27.0" prefWidth="1280.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Datei">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Hauptmenü öffnen" />
+                  <MenuItem mnemonicParsing="false" text="Fenster schließen" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Beenden" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Lagerverkehr">
+            <items>
+                  <CheckMenuItem mnemonicParsing="false" selected="true" text="Bestellungen anzeigen" />
+                  <CheckMenuItem mnemonicParsing="false" selected="true" text="Einlieferungen anziegen" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Nach Lieferung suchen..." />
+                  <Menu mnemonicParsing="false" text="Tabellenfilter hinzufügen">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Nach Datum..." />
+                        <MenuItem mnemonicParsing="false" text="Nach Gesamtpreis..." />
+                        <MenuItem mnemonicParsing="false" text="Nach Lieferposition..." />
+                    </items>
+                  </Menu>
+                  <MenuItem mnemonicParsing="false" text="Tabellenfilter entfernen" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TextField editable="false" layoutY="693.0" prefHeight="26.0" prefWidth="1280.0" promptText="Statuszeile">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </TextField>
+      <TableView fx:id="tbStock" layoutY="28.0" prefHeight="669.0" prefWidth="1280.0" tableMenuButtonVisible="true">
+        <columns>
+          <TableColumn prefWidth="105.0" text="ID" />
+          <TableColumn prefWidth="564.0" text="Typ" />
+            <TableColumn prefWidth="427.0" text="Gesamtpreis" />
+            <TableColumn prefWidth="171.0" text="Position" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

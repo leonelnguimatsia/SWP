@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.thkoeln.swp.wawi.admingui.control.dialogs.CategoryController">
+   <bottom>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#cancel" text="Abbrechen" />
+          <Button fx:id="btConfirm" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#confirm" text="Übernehmen" />
+        </buttons>
+         <BorderPane.margin>
+            <Insets right="10.0" />
+         </BorderPane.margin>
+      </ButtonBar>
+   </bottom>
+   <center>
+      <GridPane vgap="10.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="159.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="462.0" minWidth="10.0" prefWidth="301.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Kategoriename:" />
+            <TextField fx:id="tfName" promptText="Name" GridPane.columnIndex="1" />
+            <Label layoutX="10.0" layoutY="16.0" text="Kategoriebeschreibung:" GridPane.rowIndex="1" />
+            <TextField fx:id="tfDescription" layoutX="203.0" layoutY="12.0" prefHeight="26.0" prefWidth="444.0" promptText="Beschreibung" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmCategory" editable="true" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Kategorie" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <Label text="Überkategorie:" GridPane.rowIndex="2" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
+</BorderPane>

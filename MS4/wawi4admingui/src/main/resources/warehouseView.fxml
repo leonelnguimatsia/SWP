@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.thkoeln.swp.wawi.admingui.control.WarehouseViewController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Datei">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#reload" text="Neu laden" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#openMainMenu" text="Hauptmenü öffnen" />
+                  <MenuItem mnemonicParsing="false" onAction="#closeWindow" text="Fenster schließen" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Beenden..." />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Tabelle">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#search" text="Nach Eintrag suchen..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <Menu fx:id="muWtFilter" mnemonicParsing="false" text="Lagerverkehr filtern">
+                    <items>
+                      <MenuItem fx:id="miWtID" mnemonicParsing="false" onAction="#filterWt" text="Nach Lieferungs-ID..." />
+                        <MenuItem fx:id="miWtType" mnemonicParsing="false" onAction="#filterWt" text="Nach Typ..." />
+                        <MenuItem fx:id="miWtDate" mnemonicParsing="false" onAction="#filterWt" text="Nach Datum..." />
+                        <MenuItem fx:id="miWtPrice" mnemonicParsing="false" onAction="#filterWt" text="Nach Gesamtpreis..." />
+                        <MenuItem fx:id="miWtState" mnemonicParsing="false" onAction="#filterWt" text="Nach Status..." />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="miWtReset" disable="true" mnemonicParsing="false" onAction="#removeFiltersWt" text="Filter entfernen" />
+                    </items>
+                  </Menu>
+                  <Menu fx:id="muOFilter" mnemonicParsing="false" text="Bestellungen filtern">
+                    <items>
+                      <MenuItem fx:id="miOID" mnemonicParsing="false" onAction="#filterO" text="Nach Bestellungs-ID..." />
+                        <MenuItem fx:id="miODate" mnemonicParsing="false" onAction="#filterO" text="Nach Datum..." />
+                        <MenuItem fx:id="miOState" mnemonicParsing="false" onAction="#filterO" text="Nach Status..." />
+                        <MenuItem fx:id="miONetPrice" mnemonicParsing="false" onAction="#filterO" text="Nach Nettopreis..." />
+                        <MenuItem fx:id="miOGrossPrice" mnemonicParsing="false" onAction="#filterO" text="Nach Bruttopreis..." />
+                        <MenuItem fx:id="miODeliveryAddress" mnemonicParsing="false" onAction="#filterO" text="Nach Lieferadresse..." />
+                        <MenuItem fx:id="miOBillingAddress" mnemonicParsing="false" onAction="#filterO" text="Nach Rechnungsadresse..." />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="miOReset" disable="true" mnemonicParsing="false" onAction="#removeFiltersO" text="Filter entfernen" />
+                    </items>
+                  </Menu>
+                  <Menu fx:id="muDFilter" mnemonicParsing="false" text="Einlieferungen filtern">
+                    <items>
+                      <MenuItem fx:id="miDID" mnemonicParsing="false" onAction="#filterD" text="Nach Einlieferungs-ID..." />
+                        <MenuItem fx:id="miDDate" mnemonicParsing="false" onAction="#filterD" text="Nach Datum..." />
+                        <MenuItem fx:id="miDPrice" mnemonicParsing="false" onAction="#filterD" text="Nach Gesamtpreis..." />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="miDReset" disable="true" mnemonicParsing="false" onAction="#removeFiltersD" text="Filter entfernen" />
+                    </items>
+                  </Menu>
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+         <tabs>
+            <Tab fx:id="tabWarehouseTraffic" text="Lagerverkehr">
+               <content>
+                  <SplitPane dividerPositions="0.6" prefHeight="160.0" prefWidth="200.0">
+                    <items>
+                        <BorderPane>
+                           <center>
+                              <TableView fx:id="tbWarehouseTraffic" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/wtstyle.css" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn fx:id="tcWtID" prefWidth="75.0" text="Lieferungs-ID" />
+                                  <TableColumn fx:id="tcWtType" prefWidth="75.0" text="Typ" />
+                                    <TableColumn fx:id="tcWtDate" prefWidth="75.0" text="Datum" />
+                                    <TableColumn fx:id="tcWtPrice" prefWidth="75.0" text="Gesamtpreis" />
+                                    <TableColumn fx:id="tcWtStatus" prefWidth="75.0" text="Status" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </center>
+                        </BorderPane>
+                        <BorderPane>
+                           <center>
+                              <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                                <items>
+                                    <BorderPane>
+                                       <center>
+                                          <TableView fx:id="tbWtItemInfo" prefHeight="200.0" prefWidth="200.0" styleClass="noheader" stylesheets="@css/noheader.css" BorderPane.alignment="CENTER">
+                                            <columns>
+                                              <TableColumn fx:id="tcWtInfoAttribute" prefWidth="75.0" />
+                                              <TableColumn fx:id="tcWtInfoValue" prefWidth="75.0" />
+                                            </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                       </center>
+                                       <bottom>
+                                          <Label text="Daten der gewählten Bestellung / Einlieferung" BorderPane.alignment="CENTER" />
+                                       </bottom>
+                                    </BorderPane>
+                                    <BorderPane>
+                                       <center>
+                                          <TableView fx:id="tbWtPositions" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
+                                            <columns>
+                                              <TableColumn fx:id="tcWtPosID" prefWidth="75.0" text="Positions-ID" />
+                                              <TableColumn fx:id="tcWtPosProduct" prefWidth="75.0" text="Produkt" />
+                                                <TableColumn fx:id="tcWtPosCount" prefWidth="75.0" text="Anzahl" />
+                                            </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                       </center>
+                                       <bottom>
+                                          <Label text="Lieferpositionen der gewählten Bestellung / Einlieferung" BorderPane.alignment="CENTER" />
+                                       </bottom>
+                                    </BorderPane>
+                                </items>
+                              </SplitPane>
+                           </center>
+                        </BorderPane>
+                    </items>
+                  </SplitPane>
+               </content>
+            </Tab>
+             <Tab fx:id="tabOrders" text="Bestellungen">
+               <content>
+                  <SplitPane dividerPositions="0.75" prefHeight="160.0" prefWidth="200.0">
+                    <items>
+                        <BorderPane>
+                           <center>
+                              <TableView fx:id="tbOrders" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn fx:id="tcOID" prefWidth="75.0" text="Bestellungs-ID" />
+                                  <TableColumn fx:id="tcODate" prefWidth="75.0" text="Datum" />
+                                    <TableColumn fx:id="tcOState" prefWidth="75.0" text="Status" />
+                                    <TableColumn fx:id="tcONetPrice" prefWidth="75.0" text="Nettopreis" />
+                                    <TableColumn fx:id="tcOGrossPrice" prefWidth="75.0" text="Bruttopreis" />
+                                    <TableColumn fx:id="tcODeliveryAddress" prefWidth="55.1112060546875" text="Lieferadresse" />
+                                    <TableColumn fx:id="tcOBillingAddress" prefWidth="198.22216796875" text="Rechnungsadresse" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </center>
+                        </BorderPane>
+                        <BorderPane>
+                           <center>
+                              <TableView fx:id="tbOPos" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn fx:id="tcOPosID" prefWidth="75.0" text="Positions-ID" />
+                                  <TableColumn fx:id="tcOPosProduct" prefWidth="75.0" text="Produkt" />
+                                    <TableColumn fx:id="tcOPosCount" prefWidth="75.0" text="Anzahl" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </center>
+                           <bottom>
+                              <Label text="Bestellpositionen der gewählten Bestellung" BorderPane.alignment="CENTER" />
+                           </bottom>
+                        </BorderPane>
+                    </items>
+                  </SplitPane>
+               </content></Tab>
+             <Tab fx:id="tabDeliveries" text="Einlieferungen">
+               <content>
+                  <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+                    <items>
+                        <BorderPane>
+                           <center>
+                              <TableView fx:id="tbDeliveries" prefHeight="660.0" prefWidth="566.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn fx:id="tcDID" prefWidth="75.0" text="Einlieferungs-ID" />
+                                  <TableColumn fx:id="tcDDate" prefWidth="75.0" text="Datum" />
+                                    <TableColumn fx:id="tcDPrice" prefWidth="75.0" text="Gesamtpreis" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </center>
+                        </BorderPane>
+                        <BorderPane>
+                           <center>
+                              <TableView fx:id="tbDPos" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn fx:id="tcDPosID" prefWidth="75.0" text="Lieferpositions-ID" />
+                                  <TableColumn fx:id="tcDPosProduct" prefWidth="75.0" text="Produkt" />
+                                    <TableColumn fx:id="tcDPosCount" prefWidth="75.0" text="Anzahl" />
+                                    <TableColumn fx:id="tcDPosPrice" prefWidth="75.0" text="Kaufpreis" />
+                                    <TableColumn fx:id="tcDPosState" prefWidth="75.0" text="Status" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </center>
+                           <bottom>
+                              <Label text="Lieferpositionen der gewählten Einlieferung" BorderPane.alignment="CENTER" />
+                           </bottom>
+                        </BorderPane>
+                    </items>
+                  </SplitPane>
+               </content></Tab>
+         </tabs>
+      </TabPane>
+   </center>
+   <bottom>
+      <Label fx:id="lbStatus" maxWidth="1.7976931348623157E308" style="-fx-background-color: #DDDDDD; -fx-border-color: #AAAAAA; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+   </bottom>
+</BorderPane>

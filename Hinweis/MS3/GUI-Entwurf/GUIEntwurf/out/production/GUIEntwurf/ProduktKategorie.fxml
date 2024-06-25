@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProduktKategorie">
+    <children>
+        <MenuBar layoutY="1.0" prefHeight="5.0" prefWidth="1280.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Datei">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Hauptmenü öffnen" />
+                        <MenuItem mnemonicParsing="false" text="Fenster schließen" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Beenden" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Produkt">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Produkt hinzufügen..." />
+                        <MenuItem mnemonicParsing="false" text="Produkt bearbeiten..." />
+                        <MenuItem mnemonicParsing="false" text="Produkt [aktivieren | deaktivieren]" />
+                        <MenuItem mnemonicParsing="false" text="Produkt entfernen" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Produkte nach Anzahl aktivieren..." />
+                  <MenuItem mnemonicParsing="false" text="Produkte nach Anzahl deaktivieren..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Nach Produkt suchen..." />
+                        <Menu mnemonicParsing="false" text="Tebellenfilter hinzufügen">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Nach Produkt-ID..." />
+                                <MenuItem mnemonicParsing="false" text="Nach Produktnamen..." />
+                                <MenuItem mnemonicParsing="false" text="Nach Anzahl..." />
+                                <MenuItem mnemonicParsing="false" text="Nach Aktivierungsstatus..." />
+                            </items>
+                        </Menu>
+                        <MenuItem mnemonicParsing="false" text="Tabellenfilter entfernen" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Kategorie">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Kategorie hinzufügen..." />
+                        <MenuItem mnemonicParsing="false" text="Kategorie bearbeiten..." />
+                        <MenuItem mnemonicParsing="false" text="Kategorie entfernen" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <TextField editable="false" focusTraversable="false" layoutY="693.0" prefHeight="27.0" prefWidth="1280.0" promptText="Statuszeile">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </TextField>
+            <SplitPane dividerPositions="0.28873917228103946" layoutY="28.0" prefHeight="665.0" prefWidth="1280.0">
+                <items>
+                    <TreeView fx:id="treeCategory" editable="true" prefHeight="200.0" prefWidth="200.0" />
+                    <TableView fx:id="tbProducts" prefHeight="583.0" prefWidth="528.0" tableMenuButtonVisible="true">
+                        <columns>
+                            <TableColumn prefWidth="86.0" text="Produkt-ID" />
+                            <TableColumn prefWidth="284.0" text="Produkt Name" />
+                            <TableColumn prefWidth="265.0" text="Produkt Kategorie" />
+                            <TableColumn prefWidth="142.0" text="Anzahl" />
+                            <TableColumn prefWidth="116.0" text="Aktiviert" />
+                        </columns>
+                    </TableView>
+                </items>
+            </SplitPane>
+    </children>
+</AnchorPane>

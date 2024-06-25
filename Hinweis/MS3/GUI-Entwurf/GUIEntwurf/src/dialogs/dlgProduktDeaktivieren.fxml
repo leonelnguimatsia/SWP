@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="212.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DlgProduktAktivieren">
+   <children>
+      <Label layoutX="139.0" layoutY="20.0" text="Produkte Nach Anzahl Deaktivieren">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Button defaultButton="true" layoutX="435.0" layoutY="172.0" mnemonicParsing="false" text="Produkte Deaktivieren" />
+      <Button cancelButton="true" layoutX="340.0" layoutY="172.0" mnemonicParsing="false" text="Abbrechen" />
+      <RadioButton layoutX="127.0" layoutY="121.0" mnemonicParsing="false" text="Größer" />
+      <RadioButton layoutX="210.0" layoutY="121.0" mnemonicParsing="false" selected="true" text="Kleiner" />
+      <CheckBox layoutX="292.0" layoutY="121.0" mnemonicParsing="false" selected="true" text="Gleich" />
+      <Label layoutX="14.0" layoutY="121.0" text="Bedingung:" />
+      <Label layoutX="14.0" layoutY="78.0" text="Anzahl:" />
+      <TextField layoutX="127.0" layoutY="74.0" prefHeight="26.0" prefWidth="230.0" promptText="Anzahl" />
+      <Label layoutX="401.0" layoutY="70.0" text="Hilfe: Produkte werden dann&#10;deaktiviert, wenn die Stückzahl&#10;des Produkts [Bedingung]&#10;als [Anzahl] ist." />
+   </children>
+</AnchorPane>

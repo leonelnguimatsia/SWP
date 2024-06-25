@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane minHeight="260.0" minWidth="460.0" prefHeight="260.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.thkoeln.swp.wawi.admingui.control.AdminController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Datei">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#logout" text="Abmelden..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Beenden..." />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <bottom>
+      <Label text="Sie sind als Admin angemeldet" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="15.0" />
+         </BorderPane.margin>
+      </Label>
+   </bottom>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+            <Label text="Admin Hauptmenü" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets top="15.0" />
+               </BorderPane.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <FlowPane alignment="CENTER" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" prefWrapLength="0.0" vgap="15.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btOpenProductView" alignment="CENTER_RIGHT" maxHeight="48.0" maxWidth="1.7976931348623157E308" minHeight="48.0" minWidth="280.0" mnemonicParsing="false" onAction="#openProductView" stylesheets="@css/buttonstyle.css" text="Produkte &amp; Kategorien" />
+                  <Button fx:id="btOpenWarehouseView" alignment="CENTER_RIGHT" maxHeight="48.0" maxWidth="1.7976931348623157E308" minHeight="48.0" minWidth="280.0" mnemonicParsing="false" onAction="#openWarehouseView" stylesheets="@css/buttonstyle.css" text="Lagerverkehr" />
+               </children>
+            </FlowPane>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

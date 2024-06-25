@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefWidth="518.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.thkoeln.swp.wawi.admingui.control.dialogs.FilterStringController">
+   <bottom>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#cancel" text="Abbrechen" />
+          <Button fx:id="btConfirm" defaultButton="true" mnemonicParsing="false" onAction="#confirm" text="Übernehmen" />
+        </buttons>
+         <BorderPane.margin>
+            <Insets right="10.0" />
+         </BorderPane.margin>
+      </ButtonBar>
+   </bottom>
+   <center>
+      <GridPane vgap="10.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="88.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="462.0" minWidth="10.0" prefWidth="390.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+        </rowConstraints>
+         <children>
+            <Label text="Wert:" GridPane.rowIndex="1" />
+            <Label layoutX="10.0" layoutY="16.0" text="Bedingung:" GridPane.rowIndex="2" />
+            <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" hgap="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <RadioButton fx:id="rbContains" mnemonicParsing="false" selected="true" text="Enthalten in">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="condition" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rbStartsWith" mnemonicParsing="false" text="Beginnt mit" toggleGroup="$condition" />
+                  <RadioButton fx:id="rbEndsWith" layoutX="257.0" layoutY="16.0" mnemonicParsing="false" text="Endet mit" toggleGroup="$condition" />
+                  <RadioButton fx:id="rbEquals" layoutX="56.0" layoutY="16.0" mnemonicParsing="false" text="Ist Gleich" toggleGroup="$condition" />
+               </children>
+            </FlowPane>
+            <TextField fx:id="tfValue" promptText="Wert" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label layoutX="10.0" layoutY="56.0" text="Attribut:" />
+            <TextField fx:id="tfAttribute" editable="false" GridPane.columnIndex="1" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
+</BorderPane>

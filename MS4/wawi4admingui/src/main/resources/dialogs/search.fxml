@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.thkoeln.swp.wawi.admingui.control.dialogs.SearchController">
+   <bottom>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#cancel" text="Abbrechen" />
+          <Button fx:id="btConfirm" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#confirm" text="Suchen" />
+        </buttons>
+         <BorderPane.margin>
+            <Insets right="10.0" />
+         </BorderPane.margin>
+      </ButtonBar>
+   </bottom>
+   <center>
+      <GridPane vgap="10.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="151.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="462.0" minWidth="10.0" prefWidth="347.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+        </rowConstraints>
+         <children>
+            <Label text="Attribut:" />
+            <Label layoutX="10.0" layoutY="16.0" text="Wert:" GridPane.rowIndex="1" />
+            <TextField fx:id="tfValue" layoutX="203.0" layoutY="12.0" prefHeight="26.0" prefWidth="444.0" promptText="Wert" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmAttribute" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Attribut" GridPane.columnIndex="1" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
+</BorderPane>

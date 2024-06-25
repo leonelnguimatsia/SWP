@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.thkoeln.swp.wawi.admingui.control.dialogs.FilterNumberController">
+   <bottom>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#cancel" text="Abbrechen" />
+          <Button fx:id="btConfirm" defaultButton="true" mnemonicParsing="false" onAction="#confirm" text="Übernehmen" />
+        </buttons>
+         <BorderPane.margin>
+            <Insets right="10.0" />
+         </BorderPane.margin>
+      </ButtonBar>
+   </bottom>
+   <center>
+      <GridPane vgap="10.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="61.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="462.0" minWidth="10.0" prefWidth="288.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+        </rowConstraints>
+         <children>
+            <Label text="Wert:" GridPane.rowIndex="1" />
+            <Label layoutX="10.0" layoutY="16.0" text="Bedingung:" GridPane.rowIndex="2" />
+            <Spinner fx:id="spValue" editable="true" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <FlowPane alignment="CENTER_RIGHT" columnHalignment="RIGHT" hgap="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <ToggleButton fx:id="tgLarger" mnemonicParsing="false" text="Größer (&gt;)">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="condition" />
+                     </toggleGroup>
+                  </ToggleButton>
+                  <ToggleButton fx:id="tgSmaller" layoutX="85.0" layoutY="12.0" mnemonicParsing="false" text="Kleiner (&lt;)" toggleGroup="$condition" />
+                  <CheckBox fx:id="cbEqual" mnemonicParsing="false" text="Gleich (=)" />
+               </children>
+            </FlowPane>
+            <Label layoutX="10.0" layoutY="56.0" text="Attribut:" />
+            <TextField fx:id="tfAttribute" editable="false" GridPane.columnIndex="1" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
+</BorderPane>

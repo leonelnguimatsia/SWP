@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.thkoeln.swp.wawi.admingui.control.dialogs.ProductController">
+   <bottom>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#cancel" text="Abbrechen" />
+          <Button fx:id="btConfirm" defaultButton="true" disable="true" mnemonicParsing="false" onAction="#confirm" text="Übernehmen" />
+        </buttons>
+         <BorderPane.margin>
+            <Insets right="10.0" />
+         </BorderPane.margin>
+      </ButtonBar>
+   </bottom>
+   <center>
+      <GridPane vgap="10.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="145.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="462.0" minWidth="10.0" prefWidth="272.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Produktname:" />
+            <TextField fx:id="tfName" promptText="Name" GridPane.columnIndex="1" />
+            <Label layoutX="10.0" layoutY="16.0" text="Produktbeschreibung:" GridPane.rowIndex="1" />
+            <TextField fx:id="tfDescription" layoutX="203.0" layoutY="12.0" prefHeight="26.0" prefWidth="444.0" promptText="Beschreibung" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label layoutX="10.0" layoutY="46.0" text="Stückzahl:" GridPane.rowIndex="2" />
+            <Spinner fx:id="spCount" editable="true" prefHeight="26.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <Label layoutX="10.0" layoutY="76.0" text="Nettopreis:" GridPane.rowIndex="3" />
+            <Spinner fx:id="spPrice" editable="true" layoutX="472.0" layoutY="72.0" prefHeight="26.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <Label layoutX="10.0" layoutY="106.0" text="Mehrwertsteuer (%):" GridPane.rowIndex="4" />
+            <Spinner fx:id="spTax" editable="true" layoutX="472.0" layoutY="102.0" prefHeight="26.0" prefWidth="138.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+            <CheckBox fx:id="cbActive" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Aktiviert" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+            <ComboBox fx:id="cmCategory" editable="true" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Kategorie" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+            <Label text="Kategorie:" GridPane.rowIndex="6" />
+            <Label text="Lagerort:" GridPane.rowIndex="7" />
+            <ComboBox fx:id="cmLocation" editable="true" layoutX="161.0" layoutY="256.0" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Lagerort" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
+</BorderPane>
